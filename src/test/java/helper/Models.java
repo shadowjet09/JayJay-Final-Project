@@ -16,7 +16,6 @@ public class Models {
     }
 
     public static Response getListUsers(String endpoint) {
-        System.out.println("endpoint yang dilempar: " + endpoint);
         setupHeaders();
         return request.when().get(endpoint);
     }
