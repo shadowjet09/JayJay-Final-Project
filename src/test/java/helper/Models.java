@@ -24,8 +24,8 @@ public class Models {
     }
 
     public static Response postCreateUser(String endpoint) {
-        String name = "Martin Lorenzo";
-        String gender = "male";
+        String name = "Kezia Susanto";
+        String gender = "female";
         String email = generateRandomEmail();
         String status = "active";
         JSONObject payload = new JSONObject();
@@ -36,5 +36,11 @@ public class Models {
 
         setupHeaders();
         return request.body(payload.toString()).when().post(endpoint);
+    }
+
+    public static Response deleteUser(String endpoint, String user_id) {
+        setupHeaders();
+        String finalEndpoint = endpoint + "/" + user_id;
+        return request.when().delete(finalEndpoint);
     }
 }
