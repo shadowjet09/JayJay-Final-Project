@@ -37,7 +37,6 @@ public class ApiPage {
 
     public void hitApiPostCreateUser() {
         res = postCreateUser(setURL);
-        System.out.println(res.getBody().asString());
     }
 
     public void validationStatusCodeIsEquals(int status_code) {
@@ -82,5 +81,24 @@ public class ApiPage {
 
     public void hitApiDeleteUser() {
         res = deleteUser(setURL, global_id);
+    }
+
+    public void hitApiUpdateUser() {
+        res = updateUser(setURL, global_id);
+    }
+
+    public void validationResponseBodyUpdateUser() {
+        JsonPath jsonPathEvaluator =  res.jsonPath();
+        Integer id = jsonPathEvaluator.get("id");
+        String name = jsonPathEvaluator.get("name");
+        String email = jsonPathEvaluator.get("email");
+        String gender = jsonPathEvaluator.get("gender");
+        String status = jsonPathEvaluator.get("status");
+
+        assertThat(id).isNotNull();
+        assertThat(name).isNotNull();
+        assertThat(email).isNotNull();
+        assertThat(gender).isIn("female", "male");
+        assertThat(status).isIn("active", "inactive");
     }
 }
