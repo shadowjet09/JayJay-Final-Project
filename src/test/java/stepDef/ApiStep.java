@@ -39,4 +39,9 @@ public class ApiStep {
     public void validationResponseJsonWithJSONSchema(String filename) {
         apiPage.validationResponseJsonWithJSONSchema(filename);
     }
+
+    @And("hit api post create new user")
+    public void hitApiPostCreateNewUser() {
+        apiPage.hitApiPostCreateUser();
+    }
 }

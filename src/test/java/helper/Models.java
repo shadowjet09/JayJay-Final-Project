@@ -3,6 +3,9 @@ package helper;
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
+import netscape.javascript.JSObject;
+import org.json.JSONObject;
+import static helper.Utility.generateRandomEmail;
 
 public class Models {
 
@@ -18,5 +21,20 @@ public class Models {
     public static Response getListUsers(String endpoint) {
         setupHeaders();
         return request.when().get(endpoint);
+    }
+
+    public static Response postCreateUser(String endpoint) {
+        String name = "Martin Lorenzo";
+        String gender = "male";
+        String email = generateRandomEmail();
+        String status = "active";
+        JSONObject payload = new JSONObject();
+        payload.put("name", name);
+        payload.put("gender", gender);
+        payload.put("email", email);
+        payload.put("status", status);
+
+        setupHeaders();
+        return request.body(payload.toString()).when().post(endpoint);
     }
 }

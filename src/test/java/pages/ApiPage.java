@@ -4,10 +4,10 @@ import helper.Endpoint;
 import helper.Utility;
 import io.restassured.module.jsv.JsonSchemaValidator;
 import io.restassured.response.Response;
-
 import java.io.File;
 import java.util.List;
 import static helper.Models.getListUsers;
+import static helper.Models.postCreateUser;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class ApiPage {
@@ -33,6 +33,11 @@ public class ApiPage {
 
     public void hitApiGetListUsers() {
         res = getListUsers(setURL);
+    }
+
+    public void hitApiPostCreateUser() {
+        res = postCreateUser(setURL);
+        System.out.println(res.getBody().asString());
     }
 
     public void validationStatusCodeIsEquals(int status_code) {
