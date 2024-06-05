@@ -26,13 +26,21 @@ jobs:
     - name: Setup Chrome
       uses: browser-actions/setup-chrome@v1.7.1
 
+    # Debug step to list files in root directory
+    - name: List files in root directory
+      run: ls -la
+
     # Setup gradlew
     - name: Setup gradlew
-      run: chmod +x gradlew
+      run: chmod +x ./gradlew
+
+    # Debug step to check gradlew permissions
+    - name: Check gradlew permissions
+      run: ls -la ./gradlew
 
     # API Test exec
     - name: API Test
-      run: /.gradlew apiTest
+      run: ./gradlew apiTest
 
     # Web Test exec
     - name: Web Test
